@@ -1,0 +1,308 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+:root {
+  --ratio: calc(100vw / 100vh);
+}
+
+html {
+  background: #070707;
+  color: white;
+}
+
+body {
+  font: 400 16px Myriad Pro;
+}
+
+main {
+  overflow-y: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.logo {
+  margin-top: 32px;
+  opacity: 0;
+  width: 140px;
+  transition: opacity .8s;
+  animation: breath 10s infinite;
+  transform-origin: 50% 50%;
+}
+
+.logo--appear {
+  opacity: 1;
+}
+.logo--blink {
+  animation: breath 10s infinite, text-blink 6s infinite;
+}
+
+.desc {
+  margin: 16px 0;
+  padding: 0 24px 0 32px;
+  opacity: 0;
+  max-width: 500px;
+  transition: opacity .5s .8s;
+  animation: breath 10s infinite;
+  transform-origin: 50% 50%;
+
+  position: relative;
+  z-index: 10;
+  --ts-size: 3px;
+  text-shadow: 0 0 var(--ts-size) black, 0 0 var(--ts-size) black, 0 0 var(--ts-size) black, 0 0 var(--ts-size) black;
+
+  font-family: Houschka Pro;
+  font-weight: 600;
+
+  word-spacing: 8px;
+  line-height: 1.1em;
+}
+
+.desc--appear {
+  opacity: 1;
+}
+
+.desc--blink {
+  animation: breath 10s infinite, text-blink 7s infinite;
+}
+
+@keyframes text-blink {
+  0% { opacity: 1 }
+  50% { opacity: .9 }
+  100% { opacity: 1 }
+}
+
+@keyframes breath {
+  0% { transform: scale(1) }
+  50% { transform: scale(1.02) }
+  100% { transform: scale(1) }
+}
+
+.logoName-cont {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.logoName {
+  --fs: 72px;
+  white-space: pre;
+  padding: 100px;
+  /* position: absolute;
+  top: calc(50% - var(--fs));
+  left: 50%; */
+  margin: 0 auto;
+  font: 400 var(--fs) Myriad Pro;
+  line-height: calc(var(--fs) * .8);
+  transition: all 1s;
+}
+
+.logoName span {
+  opacity: 0;
+  transition: all 1s .8s;
+}
+
+.logoName--appear span {
+  opacity: 1 !important;
+}
+
+.logoName--appear-out span {
+  transition: all 1.5s .5s;
+  filter: blur(100px);
+  color: orange;
+  opacity: 0 !important;
+}
+ 
+.logoName--intert {
+  transform: translate(3vw, -1vh);
+}
+
+.logoName--intert-out {
+  transform: translate(0, 0);
+  transition: all 2s cubic-bezier(.56,-0.01,.42,1.36);
+}
+
+.waves {
+  overflow: hidden;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+}
+
+.wave {
+  --size: 0;
+  --bw: 220px;
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 100%;
+  border: 0px solid white;
+  opacity: 1;
+  box-sizing: content-box;
+  /* background: red; */
+}
+
+.wave-pointer {
+  --bw: 180px;
+  opacity: .3;
+}
+
+#wave1 {
+  bottom: calc(-1 * var(--bw));
+  left: 50%;
+  margin-left: calc(var(--size) / 2 * -1 - var(--bw));
+}
+
+.wave1--animate {
+  --size: 150vh;
+  opacity: 0;
+  transition: all 2s ease-out;
+  border-width: var(--bw);
+  transform: translateY(50vh);
+}
+
+#wave2 {
+  left: calc(-1 * var(--bw));
+  top: 70%;
+  margin-top: calc(var(--size) / 2 * -1 - var(--bw));
+}
+
+.wave2--animate {
+  --size: 250vw;
+  opacity: 0;
+  transition: all 2s ease-out;
+  border-width: var(--bw);
+  transform: translateX(-50vh);
+}
+
+#wave3 {
+  right: calc(-1 * var(--bw));
+  top: 70%;
+  margin-top: calc(var(--size) / 2 * -1 - var(--bw));
+}
+
+.wave3--animate {
+  --size: 250vw;
+  opacity: 0;
+  transition: all 2s ease-out;
+  border-width: var(--bw);
+  transform: translateX(50vh);
+}
+
+.wave-pointer--animate {
+  --size: 200vw;
+  opacity: 0;
+  transform: translate(calc(var(--size) / -2 - var(--bw)), calc(var(--size) / -2 - var(--bw)));
+  transition: all 2s ease-out;
+  border-width: var(--bw);
+}
+
+#sky {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  bottom: calc(100vw / (1.8 + .8));
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.star {
+  width: var(--size);
+  height: var(--size);
+  background: white;
+  border-radius: 100%;
+  opacity: 1;
+  position: absolute;
+  animation-iteration-count: infinite;
+}
+
+@keyframes star-blink1 {
+  0% { opacity: 0.1 },
+  50% { opacity: 1 },
+  100% { opacity: 0.1 },
+}
+
+@keyframes star-blink2 {
+  0% { opacity: .3 },
+  50% { opacity: .5 },
+  100% { opacity: .3 },
+}
+
+@keyframes star-blink3 {
+  0% { opacity: .8 },
+  50% { opacity: .4 },
+  100% { opacity: .8 },
+}
+
+#guys {
+  width: 100%;
+  /* position: absolute; */
+  /* z-index: -1; */
+  margin-bottom: 16px;
+  /* margin-top: -8px; */
+  opacity: 0;
+  transition: opacity .8s .5s;
+  flex-shrink: 999;
+  max-width: 420px;
+}
+
+@media (min-width: 768px) {
+  main {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 32px;
+  } 
+
+  .logo {
+    width: 200px;
+    margin-left: 32px;
+    margin-top: initial;
+  }
+
+  .desc {
+    margin-left: 32px;
+  }
+
+  #sky {
+    bottom: calc(100vh / (1.8 + .8));
+  }
+
+  #guys {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .logo {
+    width: 300px;
+  }
+
+  .desc {
+    font-size: 24px;
+    word-spacing: 12px;
+  }
+}
+
+.vk-link {
+  width: 32px;
+  height: 32px;
+  display: block;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  filter: grayscale(1);
+  background: url('./assets/vk.soc.svg');
+  font-size: 0.001px;
+  color: transparent;
+  background-size: contain;
+  opacity: 0;
+  transition: opacity .5s;
+}

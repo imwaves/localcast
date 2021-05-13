@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/MyriadPro-Regular.eot');
+  src: url('./assets/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+  url('./assets/MyriadPro-Regular.woff') format('woff'),
+  url('./assets/MyriadPro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* @font-face {
+  font-family: 'Houschka Pro';
+  src: local('Houschka Pro Demi Bold'), local('Houschka-Pro-Demi-Bold'),
+      url('./assets/HouschkaPro-DemiBold.woff2') format('woff2'),
+      url('./assets/HouschkaPro-DemiBold.woff') format('woff'),
+      url('./assets/HouschkaPro-DemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+} */
+
+@font-face {
+  font-family: 'Houschka Pro';
+  src: local('Houschka Pro Demi Bold'), local('Houschka-Pro-Demi-Bold'),
+      url('./assets/HouschkaPro-DemiBold.woff2') format('woff2'),
+      url('./assets/HouschkaPro-DemiBold.woff') format('woff'),
+      url('./assets/HouschkaPro-DemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
