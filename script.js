@@ -62,10 +62,7 @@ function onTouch (e) {
   if (Math.random() > .8)
     $wave.style.borderColor = '#FFA51F';
   $waves.appendChild($wave);
-  $wave.addEventListener('transitionend', e => {
-    console.log('remermeormo')
-    $wave.remove();
-  });
+  $wave.addEventListener('transitionend', e => $wave.remove());
   setTimeout(() => $wave.classList.add('wave-pointer--animate'));
 }
 
