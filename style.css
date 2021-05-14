@@ -35,6 +35,16 @@ main {
   transform-origin: 50% 50%;
 }
 
+.logo .you { 
+  transform: scale(0);
+  transition: transform .5s cubic-bezier(.72,-0.01,.15,1.08);
+  transform-origin: 50% 50%;
+}
+
+.logo .you--appear {
+  transform: scale(1);
+}
+
 .logo--appear {
   opacity: 1;
 }

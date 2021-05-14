@@ -46,6 +46,14 @@ window.addEventListener('load', async (e) => {
   //     setTimeout(type, 10 + Math.random() * 50);
   // })();
 
+  const $yous = [...document.querySelectorAll('.you')];
+  $yous.forEach($you => {
+    $you.style.transformOrigin = 
+      $you.getAttribute('cx') + 'px ' +
+      $you.getAttribute('cy') + 'px'
+  });
+  logoAnimate();
+
   document.addEventListener('mousedown', onTouch);
   // document.addEventListener('touchstart', onTouch);
 });
@@ -70,14 +78,31 @@ function wait (time) {
   return new Promise(r => setTimeout(r, time));
 }
 
-function transit (selector, className, dur, delay) {
+function transit ($el, className, dur, delay) {
   return new Promise(r => {
-    const $el = ge(selector);
+    $el = typeof $el === 'string' ? ge($el) : $el;
     if (dur)
       $el.style.transitionDuration = dur;
     if (delay)
       $el.style.transitionDelay = delay;
     $el.addEventListener('transitionend', r);
-    $el.classList.add(className);
+    if ($el.classList.contains(className))
+      $el.classList.remove(className);
+    else
+      $el.classList.add(className);
   });
+}
+
+const youAppearCl = 'you--appear';
+async function logoAnimate () {
+  const $prevYou = document.querySelector('.' + youAppearCl);
+  const $yous = [...document.querySelectorAll('.you')];
+  const prevInd = $yous.indexOf($prevYou);
+  if (~prevInd) {
+    await wait(Math.random() * 2000);
+    await transit($prevYou, youAppearCl);
+  }
+  const nextYouInd = ~prevInd ? ((prevInd+1) % 4) : 0;
+  await transit($yous[nextYouInd], youAppearCl);
+  setTimeout(logoAnimate, 500 + Math.random() * 2000);
 }
